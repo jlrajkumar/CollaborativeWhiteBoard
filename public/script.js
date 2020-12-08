@@ -2,32 +2,29 @@
 var socket =io();
 //console.log(socket);   
 
-var canvas = document.querySelector(.board);
+var canvas = document.querySelector(".board");
 var context = canvas.getContext("2d");
+
 var drawing = false;
-var current  = {
-                 color:   "black"
-
-                } ;   
-
-
-//To reduce the flow of data sent in a stipulated time
-function throttle(callback, delay)
-{
-var prevCall = newDate.getTime;
-return function ( ) {
-
-    var time = new Date().getTime();
-    
-    if (time - prevCall >= delay)
-    {
-        prevCall = time;
-        callback.apply(null,arguments);
-    }
+var current = {
+  color: "black"
 };
 
+//To reduce the flow of data sent in a stipulated time
+function throttle(callback, delay) {
+    var previousCall = new Date().getTime();
+    return function () {
+      var time = new Date().getTime();
+  
+      if (time - previousCall >= delay) {
+        previousCall = time;
+        callback.apply(null, arguments);
+      }
+    };
+  }
 
-}
+
+
 /*  Events 
 MOUSE 
     MouseUP
@@ -130,3 +127,21 @@ socket.emit( "drawing",{
   canvas.addEventListener("touchend", onMouseUp, false);
   canvas.addEventListener("touchcancel", onMouseUp, false);
   canvas.addEventListener("touchmove", throttle(onMouseMove, 10), false);
+
+  //Resizing window
+  function reSize()
+  {
+      canvas.width = window.innerWidth;
+      canvas.height = wind.innerHeight;
+  }
+
+  window.addEventListener("resize", reSize);
+  reSize();
+
+  function onDrawingEvent(data)
+  {
+    var wd =canvas.width;
+    var ht = canvas.height;
+    drawLine(data.x0 * wd, data.y0 * ht, data.x1 * wd, data.y1 * ht, data.color);
+}
+socket.on("drawing", onDrawingEvent);
