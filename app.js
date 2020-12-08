@@ -4,7 +4,7 @@ const port = 3000;
 
 
 app.get("/", (req,res) =>{
-res.json("Hey There..! ")
+res.json("Hey..!  Welcome to Collqborative White Board ")
 
 }
 
