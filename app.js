@@ -3,12 +3,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 
-app.get("/", (req,res) =>{
-res.json("Hey..!  Welcome to Collaborative White Board ")
-
-}
-
-);
+app.use("/", express.static(__dirname + "/public") );
 
 app.listen(port, () => {
  console.log("Listening at port " + port + " and server started.");
