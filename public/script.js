@@ -10,6 +10,24 @@ var current  = {
 
                 } ;   
 
+
+
+function throttle(callback, delay)
+{
+var prevCall = newDate.getTime;
+return function ( ) {
+
+    var time = new Date().getTime();
+    
+    if (time - prevCall >= delay)
+    {
+        prevCall = time;
+        callback.apply(null,arguments);
+    }
+};
+
+
+}
 /*  Events 
 MOUSE 
     MouseUP
