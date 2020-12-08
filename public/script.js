@@ -1,0 +1,1 @@
+alert("Hey..! Click here to use the App");
