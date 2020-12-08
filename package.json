@@ -1,0 +1,26 @@
+{
+  "name": "collaborativewhiteboard",
+  "version": "1.0.0",
+  "description": "Collaborative White Board to draw and write",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",      
+    "url": "git+https://github.com/jlrajkumar/CollaborativeWhiteBoard.git"
+  },
+  "keywords": [
+    "ExpressJs",
+    "NodeJs",
+    "SocketIO",
+    "WhiteBoard"
+  ],
+  "author": "Jlrajkumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlrajkumar/CollaborativeWhiteBoard/issues"
+  },
+  "homepage": "https://github.com/jlrajkumar/CollaborativeWhiteBoard#readme"
+}
