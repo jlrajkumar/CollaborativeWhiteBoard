@@ -81,4 +81,28 @@ context.lineWidth = 2;
 context.stroke();
 context.closePath();
 
+
+if(!emit)
+{ 
+    return; 
+}
+
+var wd =canvas.width;
+var ht = canvas.height;
+
+socket.emit( "drawing",
+{
+    {
+        x0:x0/wd;
+        y0:y0/ht;
+        x1:x1/wd;
+        y1:y1/ht;
+        color
+
+    }
+
+}
+
+)
+
 } 
