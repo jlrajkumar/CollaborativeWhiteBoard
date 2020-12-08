@@ -6,12 +6,12 @@ var canvas = document.querySelector(.board);
 var context = canvas.getContext("2d");
 var drawing = false;
 var current  = {
-                    "black"
+                 color:   "black"
 
                 } ;   
 
 
-
+//To reduce the flow of data sent in a stipulated time
 function throttle(callback, delay)
 {
 var prevCall = newDate.getTime;
@@ -40,7 +40,7 @@ TOUCH
     TouchMOVE
 */
  
-function mousedown(e){
+function onMouseDown(e){
 drawing = true;
 current.x = e.clientX || e.touches[0].clientX ;
 current.y = e.clientY || e.touches[0].clientY;
@@ -48,7 +48,7 @@ current.y = e.clientY || e.touches[0].clientY;
 
 }
 
-function mouseup(e)
+function onMouseUp(e)
 {
     if(!drawing) 
     {
@@ -68,7 +68,7 @@ drawIt(
 
 }
 
-function mousemove(e){
+function onMouseMove(e){
     if(!drawing) 
     {
     return;
@@ -108,19 +108,25 @@ if(!emit)
 var wd =canvas.width;
 var ht = canvas.height;
 
-socket.emit( "drawing",
-{
-    {
-        x0:x0/wd;
-        y0:y0/ht;
-        x1:x1/wd;
-        y1:y1/ht;
+socket.emit( "drawing",{
+        x0:x0/wd,
+        y0:y0/ht,
+        x1:x1/wd,
+        y1:y1/ht,
         color
 
-    }
+    });
 
-}
+  }
 
-)
+ //Handling event Listeners for Browser 
+  canvas.addEventListener("mousedown", onMouseDown, false);
+  canvas.addEventListener("mouseup", onMouseUp, false);
+  canvas.addEventListener("mouseout", onMouseUp, false);
+  canvas.addEventListener("mousemove", throttle(onMouseMove, 10), false);
 
-} 
+  //Handling event Listeners for Mobile
+  canvas.addEventListener("touchstart", onMouseDown, false);
+  canvas.addEventListener("touchend", onMouseUp, false);
+  canvas.addEventListener("touchcancel", onMouseUp, false);
+  canvas.addEventListener("touchmove", throttle(onMouseMove, 10), false);
