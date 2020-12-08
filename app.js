@@ -1,1 +1,1 @@
-console.log("Hi, Welcome to Collaborative White Board ! !");
+console.log("Hi, Welcome to Collaborative White Board !");

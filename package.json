@@ -4,11 +4,11 @@
   "description": "Collaborative White Board to draw and write",
   "main": "app.js",
   "scripts": {
-    "start": "node app",
+    "start": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",      
+    "type": "git",
     "url": "git+https://github.com/jlrajkumar/CollaborativeWhiteBoard.git"
   },
   "keywords": [
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/jlrajkumar/CollaborativeWhiteBoard/issues"
   },
-  "homepage": "https://github.com/jlrajkumar/CollaborativeWhiteBoard#readme"
+  "homepage": "https://github.com/jlrajkumar/CollaborativeWhiteBoard#readme",
+  "dependencies": {
+    "nodemon": "^2.0.6"
+  }
 }
