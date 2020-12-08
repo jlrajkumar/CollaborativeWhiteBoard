@@ -1,2 +1,4 @@
-# CollaborativeWhiteBoard
-Collaborative White Board. Lets users to draw lines, circle, texts, etc.,
+#Collaborative White Board
+
+##Goal of this project
+Building a Collaborative White Board which lets users to draw shapes, texts, etc.,
