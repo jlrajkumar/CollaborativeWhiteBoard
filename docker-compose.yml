@@ -1,0 +1,14 @@
+version:"2"
+services: # Services / docker containers use
+    app: #App.docker is a container
+      build: #Build configuration for an application
+        context: ./ #Directs to current working directory that we are running the docker from, here it is 
+        dockerfile: app.docker #app.docker contains application specific configurations
+        volumes: #Mapping hosts CollaborativeWhiteBoard to /CollaborativeWhiteBoard in the container
+          - ./:/CollaborativeWhiteBoard
+        ports: #host port : container port. I had set port to 3000, so set host port to 3000
+          - 3000:3000
+        environment: #Environment variables wish to use to be mentioned here 
+          PORT: ${PORT}
+        restart: always #To automatically start the docker container when the system restarts
+        tty: true #used to communicate with docker container using terminal/bash
