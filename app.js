@@ -33,10 +33,11 @@ io.on('connection', (socket) =>
     // });
 });
 
-//leader election to save and allow access to new users
+/*
+//Leader election to save and allow access to new users
 io.on('connection',(socket)=>{
     //when new users join store them in an array
-
+var users = [];
 users.push(socket.id)
 
 //leader selection from array of users
@@ -56,3 +57,6 @@ droppedSocket = users.splice(index,1);
 
     }
 });
+
+});
+*/
