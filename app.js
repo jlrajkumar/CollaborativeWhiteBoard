@@ -24,11 +24,35 @@ http.listen(port, () => {
 io.on('connection', (socket) => 
 {
     socket.on('drawing', (coordinates) => {
-        console.log(coordinates)
-        io.emit('draw', coordinates)
+        console.log(coordinates);
+        io.emit('draw', coordinates);
     })
 
     // socket.on('state', (state) => {
     //     console.log(state)
     // });
+});
+
+//leader election to save and allow access to new users
+io.on('connection',(socket)=>{
+    //when new users join store them in an array
+
+users.push(socket.id)
+
+//leader selection from array of users
+leader = users[0];
+socket.emit('leader',leader);
+
+//when leader dropsout in between the session, then choose another leader
+socket.on('disconnect',()=>{
+    var ind= users.indexOf(socket.id);
+    if (ind !== -1)
+    {
+droppedSocket = users.splice(index,1);
+         if (droppedSocket == leader)
+            {
+                    leader = users[0];
+              }
+
+    }
 });
