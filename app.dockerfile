@@ -16,7 +16,7 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 
-#Install nodenJS
+#Install nodeJS
 RUN apt -y install nodejs
 
 # Bundle app source
