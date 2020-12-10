@@ -20,3 +20,15 @@ http.listen(port, () => {
  console.log("Listening at port " + port + " and server started.");
 
 }  );
+
+io.on('connection', (socket) => 
+{
+    socket.on('drawing', (coordinates) => {
+        console.log(coordinates)
+        io.emit('draw', coordinates)
+    })
+
+    // socket.on('state', (state) => {
+    //     console.log(state)
+    // });
+});

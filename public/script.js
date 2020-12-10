@@ -63,6 +63,11 @@ drawIt(
     true  
 );
 
+coordinates = [current.x,current.y,e.clientX,e.clientY]
+console.log(coordinates)
+
+socket.emit('drawing', coordinates)
+
 }
 
 function onMouseMove(e){
@@ -132,7 +137,7 @@ socket.emit( "drawing",{
   function reSize()
   {
       canvas.width = window.innerWidth;
-      canvas.height = wind.innerHeight;
+      canvas.height = window.innerHeight;
   }
 
   window.addEventListener("resize", reSize);
@@ -144,4 +149,34 @@ socket.emit( "drawing",{
     var ht = canvas.height;
     drawLine(data.x0 * wd, data.y0 * ht, data.x1 * wd, data.y1 * ht, data.color);
 }
+
+state = []
+
+function drawLine(x0,y0,x1,y1)
+{
+  context.beginPath();
+context.moveTo(x0,y0);
+context.lineTo(x1,y1);
+context.lineWidth = 2;
+context.stroke();
+context.closePath();
+// state.push([x0,y0,x1,y1])
+// socket.emit('state',state)
+}
+
 socket.on("drawing", onDrawingEvent);
+
+socket.on('connect', () => {
+
+  // socket.on('state', (state) => {
+  //   console.log(state)
+  //   state.forEach(element => {
+  //    console.log(element) 
+  //   });
+  // });
+
+  socket.on('draw', (coordinates) => {
+    console.log(coordinates)
+    drawLine(coordinates[0],coordinates[1],coordinates[2],coordinates[3])
+  });
+})
