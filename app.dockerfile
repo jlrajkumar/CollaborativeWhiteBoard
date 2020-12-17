@@ -1,5 +1,4 @@
 FROM    ubuntu:bionic
-
 # Create app directory
 WORKDIR /CollaborativeWhiteBoard
 
@@ -23,7 +22,6 @@ RUN apt -y install nodejs
 COPY . .
 
 #Ports 
-EXPOSE 3000 3000    
-
+EXPOSE 3000 3000 
 
 CMD [ "npm", "start" ]
